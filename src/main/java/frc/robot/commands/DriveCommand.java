@@ -61,7 +61,20 @@ public class DriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get()-.1, -m_zaxisRotateSupplier.get()+.1);
+                Double XSpeed;
+            if(m_xaxisSpeedSupplier.get() > 0){
+               XSpeed = m_xaxisSpeedSupplier.get() - .1;
+            }
+            else { XSpeed = m_xaxisSpeedSupplier.get() + .1;}
+
+            Double zSpeed;
+            if(m_zaxisRotateSupplier.get() > 0){
+               zSpeed = m_zaxisRotateSupplier.get() - .1;
+            }
+            else { zSpeed = m_zaxisRotateSupplier.get() + .1;}
+
+        m_drivetrain.arcadeDrive(XSpeed , zSpeed);
+        //m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get()-.1, -m_zaxisRotateSupplier.get()+.1);    we replaced this line with all of the above code to cover all circumstances 
     }
 
     // Called once the command ends or is interrupted.
