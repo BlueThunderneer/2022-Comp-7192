@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 public class IntakeSS extends SubsystemBase {
     private Spark spark4;
     private Spark spark5;
+    private Spark spark6;
     private MotorControllerGroup intakemotors;
 
 public IntakeSS() {
@@ -23,9 +24,12 @@ public IntakeSS() {
     addChild("Spark5",spark5);
     //Inverted so it runs in opposite direction as Spark4 when added to the group in the next few lines
     spark5.setInverted(true);
+    
+    spark6 = new Spark(6);  //define motor controller 6
+    addChild("Spark6",spark6);
 
     //Put the motor controllers in a group 
-    intakemotors = new MotorControllerGroup(spark4, spark5);
+    intakemotors = new MotorControllerGroup(spark4, spark5, spark6);
     addChild("IntakeMotors",intakemotors);
     }
 
