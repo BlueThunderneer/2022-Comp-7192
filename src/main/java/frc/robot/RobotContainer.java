@@ -12,17 +12,21 @@
 package frc.robot;
 
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ArmDownTake;
+import frc.robot.commands.ArmUpTake;
 import frc.robot.commands.AutonTime;
 import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.GrabBall;
 import frc.robot.commands.LaunchBall;
+import frc.robot.commands.MechOut;
+import frc.robot.commands.MechIn;
 import frc.robot.commands.armdown;
 import frc.robot.commands.armup;
+import frc.robot.commands.intakeout;
+import frc.robot.commands.intakein;
 import frc.robot.commands.ClimbUp;
 import frc.robot.commands.ClimbDown;
 import frc.robot.commands.airOFF;
-import frc.robot.commands.grab;
-import frc.robot.commands.letgo;
 import frc.robot.commands.airON;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -115,10 +119,10 @@ private final Joystick m_opJoy1 = new Joystick(1);
       .whenHeld(new LaunchBall(m_intakess));
     //Raise the arm when opJoy1 left button (3) on top of joystick is pressed
       new JoystickButton(m_opJoy1, 3)
-      .whenPressed(new armup(m_armss));
+      .whenPressed(new ArmUpTake(m_armss, m_intakess));
     //Raise the arm when opJoy1 right button (4) on top of joystick is pressed
       new JoystickButton(m_opJoy1, 4)
-      .whenPressed(new armdown(m_armss));
+      .whenPressed(new ArmDownTake(m_armss, m_intakess));
     //Raise the climber when driver controller A button is held
       new JoystickButton(m_controller, 1)
       .whenHeld(new ClimbUp(m_ClimbSS));
@@ -129,11 +133,13 @@ private final Joystick m_opJoy1 = new Joystick(1);
       new JoystickButton(m_controller, 4)
       .whenPressed(new airOFF(m_armss));
       //grab when button 5 is pressed
-      new JoystickButton(m_controller, 5)
-      .whenPressed(new grab(m_ClimbSS));
-      // letgo when button 6 is pressed
-      new JoystickButton(m_controller, 6)
-      .whenPressed(new letgo(m_ClimbSS));
+      new JoystickButton(m_opJoy1, 9)
+      .whenPressed(new intakeout(m_intakess));
+      //letgo when button 6 is pressed
+      new JoystickButton(m_opJoy1, 11)
+      .whenPressed(new intakein(m_intakess));
+      new JoystickButton(m_opJoy1, 5)
+      .whenPressed(new MechOut(m_intakess));
     //Enable Compressor when driver controller X button is Pressed
       new JoystickButton(m_controller, 3)
       .whenPressed(new airON(m_armss));

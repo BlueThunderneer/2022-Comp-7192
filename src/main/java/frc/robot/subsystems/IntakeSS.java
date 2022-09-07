@@ -30,15 +30,15 @@ public IntakeSS() {
     //Inverted so it runs in opposite direction as Spark4 when added to the group in the next few lines
     spark5.setInverted(true);
     
-    spark6 = new Spark(6);  //define motor controller 6
+    spark6 = new Spark(6);  //define motor controller 6 (Mech wheels because yes)
     addChild("Spark6",spark6);
 
     //Put the motor controllers in a group 
-    intakemotors = new MotorControllerGroup(spark4, spark5, spark6);
+    intakemotors = new MotorControllerGroup(spark4, spark5);
     addChild("IntakeMotors",intakemotors);
 
-    DS3 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 4, 5); //0 is forward and 1 is reverse 
-    DS4 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 6, 7); //2 is forward and 3 is reverse
+    DS3 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 4, 5); //4 is forward and 5 is reverse 
+    DS4 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 6, 7); //6 is forward and 7 is reverse
     }
 
     
@@ -46,6 +46,7 @@ public IntakeSS() {
     /** Grabs the ball */
 public void grabBall() {
     intakemotors.set(0.5);
+    spark6.set(1.0);
    }
 
   /** Launches the ball. */
@@ -53,12 +54,21 @@ public void launchBall() {
     intakemotors.set(-1.0);
   }
 
-  public void intakeout(){
-    DS3.set(kForward);
-    DS4.set(kForward);
+  public void MechIn() {
+    spark6.set(1.0);
+   }
+
+  /** Launches the ball. */
+public void MechOut() {
+    spark6.set(-1.0);
+  }
+
+public void intakeout(){
+  DS3.set(kForward);
+  DS4.set(kForward);
 }
 
-public void letgo(){
+public void intakein(){
     DS3.set(kReverse);
     DS4.set(kReverse);
 }
@@ -67,5 +77,6 @@ public void letgo(){
   // Stops the intake motors when the button is released.
 public void stop() {
     intakemotors.set(0.0);
+    spark6.set(0.0);
   }        
 }
