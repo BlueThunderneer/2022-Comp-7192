@@ -7,9 +7,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
+
 
 
 public class ClimbSS extends SubsystemBase{
@@ -18,8 +16,7 @@ public class ClimbSS extends SubsystemBase{
        // private SparkMaxPIDController m_PidController;
        // public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
         //private RelativeEncoder m_encoder;
-        private DoubleSolenoid DS3;
-        private DoubleSolenoid DS4;
+
         //Compressor air;
 
         
@@ -28,8 +25,7 @@ public class ClimbSS extends SubsystemBase{
             m_sMax.restoreFactoryDefaults();
             //m_PidController = m_sMax.getPIDController();
             //m_encoder = m_sMax.getEncoder();
-            DS3 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 4, 5); //0 is forward and 1 is reverse 
-            DS4 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 6, 7); //2 is forward and 3 is reverse
+           
             //air = new Compressor(6, PneumaticsModuleType.CTREPCM);
             /*kP = 0.1; 
             kI = 1e-4;
@@ -56,15 +52,7 @@ public class ClimbSS extends SubsystemBase{
             SmartDashboard.putNumber("Set Rotations", 0);*/
 
         }
-    public void grab(){
-        DS3.set(kForward);
-        DS4.set(kForward);
-    }
-    
-    public void letgo(){
-        DS3.set(kReverse);
-        DS4.set(kReverse);
-    }
+
 
     @Override
 

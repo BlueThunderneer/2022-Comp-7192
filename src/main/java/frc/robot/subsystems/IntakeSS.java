@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 
 // An intake mechanism with two motors driving 4" compliant wheels on opposite sides of a ball
 public class IntakeSS extends SubsystemBase {
@@ -14,6 +17,8 @@ public class IntakeSS extends SubsystemBase {
     private Spark spark5;
     private Spark spark6;
     private MotorControllerGroup intakemotors;
+    private DoubleSolenoid DS3;
+    private DoubleSolenoid DS4;
 
 public IntakeSS() {
     spark4 = new Spark(4);   //define motor controller 4
@@ -31,7 +36,12 @@ public IntakeSS() {
     //Put the motor controllers in a group 
     intakemotors = new MotorControllerGroup(spark4, spark5, spark6);
     addChild("IntakeMotors",intakemotors);
+
+    DS3 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 4, 5); //0 is forward and 1 is reverse 
+    DS4 = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 6, 7); //2 is forward and 3 is reverse
     }
+
+    
 
     /** Grabs the ball */
 public void grabBall() {
@@ -42,6 +52,16 @@ public void grabBall() {
 public void launchBall() {
     intakemotors.set(-1.0);
   }
+
+  public void intakeout(){
+    DS3.set(kForward);
+    DS4.set(kForward);
+}
+
+public void letgo(){
+    DS3.set(kReverse);
+    DS4.set(kReverse);
+}
    
   // Stops running intake. This is called at the end of Grab and Launch Ball Commands.
   // Stops the intake motors when the button is released.
