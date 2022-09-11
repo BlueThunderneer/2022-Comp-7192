@@ -14,7 +14,7 @@ public class ArmUpTake extends SequentialCommandGroup {
    */
   public ArmUpTake(ArmSS m_ArmSS, IntakeSS m_intakess) {
        addCommands(
-        new intakeouttime(.5, m_intakess), //Raise the Cargo arm to shoot need to add this subsystem to the contstructor)
+        new intakeouttime(0.5, m_intakess), //Raise the Cargo arm to shoot need to add this subsystem to the contstructor)
         new armup(m_ArmSS) // set solenoids to forward     
         ); //end of addCommands
      
