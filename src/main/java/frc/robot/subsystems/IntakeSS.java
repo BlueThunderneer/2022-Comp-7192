@@ -46,7 +46,7 @@ public IntakeSS() {
     /** Grabs the ball */
 public void grabBall() {
     intakemotors.set(0.5);
-    spark6.set(1.0);
+    spark6.set(0.5);
    }
 
   /** Launches the ball. */
@@ -55,7 +55,7 @@ public void launchBall() {
   }
 
   public void MechIn() {
-    spark6.set(1.0);
+    spark6.set(0.5);
    }
 
   /** Launches the ball. */

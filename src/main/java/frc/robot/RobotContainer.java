@@ -139,7 +139,7 @@ private final Joystick m_opJoy1 = new Joystick(1);
       new JoystickButton(m_opJoy1, 11)
       .whenPressed(new intakein(m_intakess));
       new JoystickButton(m_opJoy1, 5)
-      .whenPressed(new MechOut(m_intakess));
+      .whenHeld(new MechOut(m_intakess));
     //Enable Compressor when driver controller X button is Pressed
       new JoystickButton(m_controller, 3)
       .whenPressed(new airON(m_armss));
