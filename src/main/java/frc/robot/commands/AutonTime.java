@@ -21,9 +21,9 @@ public class AutonTime extends SequentialCommandGroup {
         new LaunchBallTime(1.0, m_intakess),  //Launch the Ball into Hub, run intake out for 1 second
         new ArmdownTime(1.0, m_ArmSS),
         //new ArmdownTime(1.0, m_ArmSS),
-        new DriveTime(-0.6, 0.0, 1.5, m_drivetrain), //Drive using these params (speed,Rotation,Time,Subsystem used)
-        new DriveTime( 0, -0.5, 2.0, m_drivetrain ), // we spin around
-        new DriveTime( 0.55, 0.0, 2.0, m_drivetrain) // go forward after spin
+        new DriveTime(-0.75, 0.0, 2.0, m_drivetrain), //Drive using these params (speed,Rotation,Time,Subsystem used)
+        new DriveTime( 0, -0.75, 2.0, m_drivetrain ) // we spin around
+        //new DriveTime( 0.55, 0.0, 2.0, m_drivetrain) // go forward after spin
         
         ); //end of addCommands
      
